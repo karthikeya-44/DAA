@@ -15,7 +15,7 @@ def quick_sort(arr):
     return quick_sort(left) + [pivot] + quick_sort(right)
 
 
-# Example
-arr = [38, 27, 43, 3, 9, 82, 10]
-print("Original:", arr)
-print("Sorted:", quick_sort(arr))
+arr = list(map(int, input("Enter the elements separated by spaces: ").split()))
+
+print("Original Array:", arr)
+print("Sorted Array:", quick_sort(arr))
