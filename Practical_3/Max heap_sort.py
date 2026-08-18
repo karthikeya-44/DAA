@@ -22,7 +22,6 @@ def print_array(arr):
     print(*arr)
 
 
-# Main Program
 n = int(input("Enter the size of the array: "))
 
 arr = list(map(int, input(f"Enter {n} elements: ").split()))
