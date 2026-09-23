@@ -4,34 +4,35 @@
 
 | Case | Complexity | Description |
 | ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Best Case** | **O(n × A)** | The program checks every amount from `1` to `A` and compares it with all `n` coin denominations. |
-| **Average Case** | **O(n × A)** | For each amount, the program checks all available coins to find the minimum number of coins required. |
-| **Worst Case** | **O(n × A)** | The nested loops run for all `A` amounts and all `n` coins, resulting in approximately `n × A` operations. |
+| **Best Case** | **O(n × N)** | The program fills the complete DP table by checking every coin denomination for every amount from `1` to `N`. |
+| **Average Case** | **O(n × N)** | For each coin denomination, the program processes every amount from `1` to `N` to calculate the number of possible ways. |
+| **Worst Case** | **O(n × N)** | The nested loops run for all `n` coin denominations and all `N` possible amounts, resulting in approximately `n × N` operations. |
 
 > **Where:**
+
 > - `n` = Number of coin denominations
-> - `A` = Target amount
+> - `N` = Target amount
 
 ---
 
 ## Space Complexity
 
-- **O(A)** → The program creates a 1D DP array `dp` of size `amount + 1` to store the minimum number of coins required for each amount.
+- **O(n × N)** → The program creates a 2D DP table `dp` with `(n + 1) × (N + 1)` entries.
 
 - The `coins` list requires **O(n)** additional space to store the coin denominations.
 
-- Therefore, the **overall space complexity is O(A + n)**.
+- Therefore, the **overall space complexity is O(n × N + n)**.
 
-- If we consider the DP array as the main extra space, the space complexity is commonly stated as **O(A)**.
+- Since `O(n × N)` dominates `O(n)`, the overall space complexity is commonly stated as **O(n × N)**.
 
 ---
 
 ## Conclusion
 
-The **Coin Change Problem** is solved using **Dynamic Programming** in this program. A 1D DP array is created where `dp[i]` represents the **minimum number of coins required to make amount `i`**.
+The **Coin Change Problem** is solved using **Dynamic Programming** in this program. A 2D DP table is created where `dp[i][j]` represents the **number of ways to make amount `j` using the first `i` coin denominations**.
 
-For every amount from `1` to the target amount, the program checks all available **coin denominations** and selects the option that results in the minimum number of coins.
+For every coin denomination and every possible amount, the program considers two possibilities: **not using the current coin** and **using the current coin**. The results of these two possibilities are added to calculate the total number of ways.
 
-The algorithm has **O(n × A)** time complexity in the **best, average, and worst cases**, because it checks every coin for every possible amount. Its overall space complexity is **O(A + n)**, or **O(A)** when focusing on the DP array.
+The algorithm has **O(n × N)** time complexity in the **best, average, and worst cases**, because the complete DP table is processed. Its overall space complexity is **O(n × N)** because a 2D DP table is used.
 
-This Dynamic Programming approach is more efficient than a simple recursive approach because it **stores previously calculated results** and avoids solving the same subproblems repeatedly. It helps find the **minimum number of coins required to make the given amount**.
+This Dynamic Programming approach is efficient because it **stores previously calculated results** and avoids repeatedly solving the same subproblems. The program calculates the **total number of different combinations of coins that can be used to make the given target amount**.
